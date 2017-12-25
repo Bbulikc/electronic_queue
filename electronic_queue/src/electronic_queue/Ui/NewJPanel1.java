@@ -29,7 +29,7 @@ public class NewJPanel1 extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
 
-        jButton1.setText("НАЖМИТЕ ЗДЕСЬ");
+        jButton1.setText("НАЖМИТЕ ЗДЕСЬ ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -36,7 +36,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x41d;&#x410;&#x416;&#x41c;&#x418;&#x422;&#x415; &#x417;&#x414;&#x415;&#x421;&#x42c;"/>
+        <Property name="text" type="java.lang.String" value="&#x41d;&#x410;&#x416;&#x41c;&#x418;&#x422;&#x415; &#x417;&#x414;&#x415;&#x421;&#x42c; "/>
       </Properties>
     </Component>
   </SubComponents>
