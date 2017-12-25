@@ -12,20 +12,35 @@ import java.util.Date;
  * @author User
  */
 public class Check {
-    private int chek=-1;
+    private int id;
 
-    public Check(int number, int operatorid, Date Date) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public Check(int id, int number, int operatorid, java.sql.Date Date) {
+        this.id = id;
+        this.number = number;
+        this.operatorid = operatorid;
+        this.Date = Date;
+    }
+
+    
+    
+    public Check(int number, int operatorid, java.sql.Date Date) {
         this.number = number;
         this.operatorid = operatorid;
         this.Date = Date;
     }
     private int number;
     private int operatorid;
-    private Date Date;
+    private java.sql.Date Date;
 
-    public int getChek() {
-        return chek;
-    }
+  
 
     public int getNumber() {
         return number;
@@ -39,9 +54,7 @@ public class Check {
         return Date;
     }
 
-    public void setChek(int chek) {
-        this.chek = chek;
-    }
+  
 
     public void setNumber(int number) {
         this.number = number;
@@ -51,7 +64,7 @@ public class Check {
         this.operatorid = operatorid;
     }
 
-    public void setDate(Date Date) {
+    public void setDate(java.sql.Date Date) {
         this.Date = Date;
     }
     
