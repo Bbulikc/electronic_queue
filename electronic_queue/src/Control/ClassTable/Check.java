@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package Control.ClassTable;
 
 import java.util.Date;
 
@@ -13,7 +13,11 @@ import java.util.Date;
  */
 public class Check {
     private int id;
-
+ private int number;
+    private int operatorid;
+    private java.sql.Date Date;
+    
+    
     public void setId(int id) {
         this.id = id;
     }
@@ -36,10 +40,7 @@ public class Check {
         this.operatorid = operatorid;
         this.Date = Date;
     }
-    private int number;
-    private int operatorid;
-    private java.sql.Date Date;
-
+ 
   
 
     public int getNumber() {

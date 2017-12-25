@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package Control.DAO;
 
+import Control.ClassTable.AUDIO;
+import Control.ClassTable.User;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,16 +14,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Properties;
 
 /**
  *
  * @author User
  */
-public class CheckDAO {
+public class UserDAO {
+    
     private Connection myConnect;
-     public CheckDAO() throws Exception {
+     public UserDAO() throws Exception {
         Properties prop=new Properties();
         prop.load(new FileInputStream("info.properties"));
         String user=prop.getProperty("user");
@@ -31,60 +33,57 @@ public class CheckDAO {
                        
     }
     
-    public void Add(Check newObject) throws SQLException{
+    public void Add(User newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("insert into Check('number','operator','date') values(?,?,?)");
-        pr.setString(1, Integer.toString(newObject.getNumber()));
-         pr.setString(2, Integer.toString(newObject.getOperatorid()));
-         
-            pr.setDate(3, new java.sql.Date(newObject.getDate().getTime()));//newObject.getDate()
+        pr=this.myConnect.prepareStatement("insert into User('login','password') values(?,?)");
+        pr.setString(1, newObject.getLogin());
+         pr.setString(2, newObject.getPassword());
          
         pr.executeQuery();    
     }
     
-     public void update(Check newObject) throws SQLException{
+     public void update(User newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("update  Check set number=?,operator=?, date where id=?");
-       pr.setString(1, Integer.toString(newObject.getNumber()));
-         pr.setString(2, Integer.toString(newObject.getOperatorid()));
-         
-            pr.setDate(3, new java.sql.Date(newObject.getDate().getTime()));//newObject.getDate()
+        pr=this.myConnect.prepareStatement("update  User set login=?,password=? where id=?");
+         pr.setString(1, newObject.getLogin());
+         pr.setString(2, newObject.getPassword());
+         pr.setString(3, Integer.toString(newObject.getId()));
          
         pr.executeUpdate();
         
     }
      
-     public void delete(Check newObject) throws SQLException{
+     public void delete(User newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("delete * from Check where id=?");
+        pr=this.myConnect.prepareStatement("delete * from User where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
         pr.executeQuery();
     }
      
-      public Check   select(Check newObject) throws SQLException{
+      public AUDIO select(User newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("select * from Check where id=?");
+        pr=this.myConnect.prepareStatement("select * from User where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
         //pr.executeQuery();
         ResultSet rs = pr.executeQuery();
-        Check rezult=new Check( rs.getInt("id"),rs.getInt("number"),rs.getInt("operator"),rs.getDate("date"));
+        AUDIO rezult=new AUDIO( rs.getInt("id"),rs.getString("login"),rs.getString("password"));
         return rezult;
     }
     
-       public ArrayList<Check> select() throws SQLException{
+       public ArrayList<User> select() throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("select * from Button ");
+        pr=this.myConnect.prepareStatement("select * from User ");
        // pr.setString(1, Integer.toString(newAudio.getId()));
         //pr.executeQuery();
         ResultSet rs = pr.executeQuery();
-        ArrayList<Check> result=new ArrayList<Check>();
+        ArrayList<User> result=new ArrayList<User>();
         while(rs.wasNull()){
-        Check check=new Check( rs.getInt("id"),rs.getInt("number"),rs.getInt("operator"),rs.getDate("date"));
+        User user=new User( rs.getInt("id"),rs.getString("login"),rs.getString("password"));
         rs.next();
-        result.add(check);
-        }
+        result.add(user);}
         
         
         return result;
     }
+      
 }
