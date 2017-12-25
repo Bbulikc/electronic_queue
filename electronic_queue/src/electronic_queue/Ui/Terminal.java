@@ -4,18 +4,22 @@
  * and open the template in the editor.
  */
 package electronic_queue.Ui;
+import javax.swing.*;
 
 /**
  *
  * @author User
  */
-public class NewJPanel extends javax.swing.JPanel {
+public class Terminal extends JFrame{
 
     /**
      * Creates new form NewJPanel
      */
-    public NewJPanel() {
-        initComponents();
+    public Terminal(String str) {
+        super("u");
+        this.setSize(400, 500);
+       this.initComponents();
+        setVisible(true);
     }
 
     /**

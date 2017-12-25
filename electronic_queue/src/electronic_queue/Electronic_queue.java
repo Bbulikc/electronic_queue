@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package electronic_queue;
-
+import electronic_queue.Ui.*;
 /**
  *
  * @author User
@@ -16,6 +16,9 @@ public class Electronic_queue {
      */
     public static void main(String[] args) {
         System.out.println("Helloy World");
+        Terminal terminal=new Terminal("j");
+       //NewJFrame nj=new NewJFrame();
+      // terminal.setVisible(true);
     }
     
 }
