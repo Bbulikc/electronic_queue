@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class Terminal extends javax.swing.JFrame {
     /**
      * Creates new form Terminnal
      */
-    
+    static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
     public void createButton(){
         int height=0,width=0;
          Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -135,6 +137,9 @@ public class Terminal extends javax.swing.JFrame {
        // initComponents();
       setUndecorated(true);
       setExtendedState(JFrame.MAXIMIZED_BOTH);
+      setUndecorated(true);
+      
+      //setVisible(true); 
        createButton();
        
     

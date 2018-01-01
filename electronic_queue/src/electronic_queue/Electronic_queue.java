@@ -11,13 +11,15 @@ import Control.tableModel.AudioTable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import electronic_queue.Ui.*;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import javax.swing.JButton;
 /**
  *
  * @author User
  */
 public class Electronic_queue {
-
+static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
     /**
      * @param args the command line arguments
      */
@@ -29,6 +31,7 @@ public class Electronic_queue {
         //terminal.setUndecorated(true);
       //  terminal.c
        terminal.setVisible(true);
+       device.setFullScreenWindow(terminal);
       
    /*  try{
       /*    // System.out.println("Helloy World");
