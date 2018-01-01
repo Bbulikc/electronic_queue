@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package electronic_queue;
-import Control.DAO.Audio;
+import Control.DAO.*;
 import electronic_queue.Ui.*;
 import Control.DAO.*;
 import Control.tableModel.AudioTable;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import electronic_queue.Ui.*;
+import javax.swing.JButton;
 /**
  *
  * @author User
@@ -21,22 +23,29 @@ public class Electronic_queue {
      */
     public static void main(String[] args) throws Exception {
         System.out.println("Helloy World");
-     //   Terminal terminal=new Terminal("j");
-     try{
-           System.out.println("Helloy World");
-           Audio a2=new Audio(2,"ttt","jnc");
+       // Operatorsettings os=new Operatorsettings();
+       // os.setVisible(true);
+       Terminal terminal=new Terminal();
+        //terminal.setUndecorated(true);
+      //  terminal.c
+       terminal.setVisible(true);
+      
+   /*  try{
+      /*    // System.out.println("Helloy World");
+           Audio a2=new Audio(2,"t8585t","jnc");
            
      AudioDAO a=new AudioDAO();
     // a2.setId(2);
            
-   //a2.setUrl("hef");
-     //a.Add(a2);
-  //  a.update(a2);
-    //a2=a.select(a2);
-    ArrayList<Audio> p=a.select();
+  //a2.setUrl("hef");
+   //  a.Add(a2);
+    //a.update(a2);
+  //  a2=a.select(a2);
+  //  System.out.println(a2.getUrl());
+   ArrayList<Audio> p=a.select();
     for( Audio t:p ){
       System.out.println(t.getUrl());
-     }
+    }
     
     }
     // catch(SQLException e){
@@ -46,7 +55,11 @@ public class Electronic_queue {
     // AudioTable aaa=new AudioTable(a.select());
      
        //NewJFrame nj=new New JFrame();
-      // terminal.setVisible(true);
+      // terminal.setVisible(true);*/
+  // Terminal terminal=new Terminal("ds");
+   
+   
+   
     }
     
 }

@@ -7,7 +7,7 @@ package Control.tableModel;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import Control.ClassTable.AUDIO;
+import Control.DAO.Audio;
 /**
  *
  * @author User
@@ -20,10 +20,10 @@ public class AudioTable extends AbstractTableModel {
     private static final int url=1;
     private static final int value=2;
 
-    private ArrayList<AUDIO> audio;
+    private ArrayList<Audio> audio;
     private  final String[] columnNames={"id","url","value"};
     
-    public AudioTable(ArrayList<AUDIO> theAudios) {
+    public AudioTable(ArrayList<Audio> theAudios) {
         this.audio=theAudios;
         
     }
@@ -40,7 +40,7 @@ public class AudioTable extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int row, int col) {
-       AUDIO curentaudio=this.audio.get(row);
+       Audio curentaudio=this.audio.get(row);
        
        switch(col){
            case id:{return curentaudio.getId();}

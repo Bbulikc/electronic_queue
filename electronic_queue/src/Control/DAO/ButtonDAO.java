@@ -5,7 +5,6 @@
  */
 package Control.DAO;
 
-import Control.ClassTable.Button;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,7 +32,7 @@ public class ButtonDAO {
     
     public void Add(Button newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("insert into Button('value','parent') values(?,?)");
+        pr=this.myConnect.prepareStatement("insert into Button(value,parent) values(?,?)");
         pr.setString(1, newObject.getValue());
          pr.setString(2, Integer.toString(newObject.getParent()));
          
@@ -53,7 +52,7 @@ public class ButtonDAO {
      
      public void delete(Button newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("delete * from Button where id=?");
+        pr=this.myConnect.prepareStatement("delete  from Button where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
         pr.executeQuery();
     }
@@ -63,7 +62,8 @@ public class ButtonDAO {
         pr=this.myConnect.prepareStatement("select * from Button where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
         //pr.executeQuery();
-        ResultSet rs = pr.executeQuery();
+      
+        ResultSet rs = pr.executeQuery();  rs.next();
         Button rezult=new Button( rs.getInt("id"),rs.getString("value"),rs.getInt("parent"));
         return rezult;
     }
@@ -75,9 +75,9 @@ public class ButtonDAO {
         //pr.executeQuery();
         ResultSet rs = pr.executeQuery();
         ArrayList<Button> result=new ArrayList<Button>();
-        while(rs.wasNull()){
+        while(rs.next()){
         Button button=new Button( rs.getInt("id"),rs.getString("value"),rs.getInt("parent"));
-        rs.next();
+       
         result.add(button);
         }
         

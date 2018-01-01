@@ -5,7 +5,6 @@
  */
 package Control.DAO;
 
-import Control.ClassTable.Check;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -34,7 +33,7 @@ public class CheckDAO {
     
     public void Add(Check newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("insert into Check('number','operator','date') values(?,?,?)");
+        pr=this.myConnect.prepareStatement("insert into Check(number,operator,date) values(?,?,?)");
         pr.setString(1, Integer.toString(newObject.getNumber()));
          pr.setString(2, Integer.toString(newObject.getOperatorid()));
          
@@ -57,7 +56,7 @@ public class CheckDAO {
      
      public void delete(Check newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("delete * from Check where id=?");
+        pr=this.myConnect.prepareStatement("delete  from Check where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
         pr.executeQuery();
     }
@@ -68,6 +67,7 @@ public class CheckDAO {
         pr.setString(1, Integer.toString(newObject.getId()));
         //pr.executeQuery();
         ResultSet rs = pr.executeQuery();
+         rs.next();
         Check rezult=new Check( rs.getInt("id"),rs.getInt("number"),rs.getInt("operator"),rs.getDate("date"));
         return rezult;
     }
@@ -79,9 +79,9 @@ public class CheckDAO {
         //pr.executeQuery();
         ResultSet rs = pr.executeQuery();
         ArrayList<Check> result=new ArrayList<Check>();
-        while(rs.wasNull()){
+        while( rs.next()){
         Check check=new Check( rs.getInt("id"),rs.getInt("number"),rs.getInt("operator"),rs.getDate("date"));
-        rs.next();
+       
         result.add(check);
         }
         

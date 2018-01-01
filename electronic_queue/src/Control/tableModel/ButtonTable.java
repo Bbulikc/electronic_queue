@@ -5,7 +5,7 @@
  */
 package Control.tableModel;
 
-import Control.ClassTable.Button;
+import Control.DAO.Button;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 

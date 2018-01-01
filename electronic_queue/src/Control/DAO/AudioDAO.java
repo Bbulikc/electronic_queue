@@ -6,8 +6,6 @@
 package Control.DAO;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import Control.ClassTable.AUDIO;
-import Control.ClassTable.AUDIO;
 /**
  *
  * @author User
@@ -24,24 +22,24 @@ public class AudioDAO {
     private Connection myConnect;
     public AudioDAO() throws Exception {
         Properties prop=new Properties();
-        prop.load(new FileInputStream("info.properties"));
+        prop.load(new FileInputStream("src/Control/DAO/info.properties"));
         String user=prop.getProperty("user");
         String password=prop.getProperty("password");
         String url=prop.getProperty("url");
-        myConnect=DriverManager.getConnection(user, password, url);
-                       
+        myConnect=DriverManager.getConnection(url,user, password);
+                 Class.forName("org.h2.Driver");      
     }
     
-    public void Add(AUDIO newObject) throws SQLException{
+    public void Add(Audio newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("insert into AUDIO('url','value') values(?,?)");
+        pr=this.myConnect.prepareStatement("insert into AUDIO(url,value) values(?,?)");
         pr.setString(1, newObject.getUrl());
          pr.setString(2, newObject.getValue());
          
-        pr.executeQuery();    
+        pr.execute();    
     }
     
-     public void update(AUDIO newObject) throws SQLException{
+     public void update(Audio newObject) throws SQLException{
         PreparedStatement pr=null;
         pr=this.myConnect.prepareStatement("update  AUDIO set url=?,value=? where id=?");
         pr.setString(1, newObject.getUrl());
@@ -52,33 +50,34 @@ public class AudioDAO {
         
     }
      
-     public void delete(AUDIO newObject) throws SQLException{
+     public void delete(Audio newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("delete * from Audio where id=?");
+        pr=this.myConnect.prepareStatement("delete  from Audio where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
-        pr.executeQuery();
+        pr.execute();
     }
      
-      public AUDIO select(AUDIO newObject) throws SQLException{
+      public Audio select(Audio newObject) throws SQLException{
         PreparedStatement pr=null;
         pr=this.myConnect.prepareStatement("select * from Audio where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
         //pr.executeQuery();
         ResultSet rs = pr.executeQuery();
-        AUDIO rezult=new AUDIO( rs.getInt("id"),rs.getString("url"),rs.getString("value"));
+        rs.next();
+        Audio rezult=new Audio( rs.getInt("id"),rs.getString("url"),rs.getString("value"));
         return rezult;
     }
     
-       public ArrayList<AUDIO> select() throws SQLException{
+       public ArrayList<Audio> select() throws SQLException{
         PreparedStatement pr=null;
         pr=this.myConnect.prepareStatement("select * from Audio ");
        // pr.setString(1, Integer.toString(newAudio.getId()));
         //pr.executeQuery();
         ResultSet rs = pr.executeQuery();
-        ArrayList<AUDIO> result=new ArrayList<AUDIO>();
-        while(rs.wasNull()){
-        AUDIO audio=new AUDIO( rs.getInt("id"),rs.getString("url"),rs.getString("value"));
-        rs.next();
+        ArrayList<Audio> result=new ArrayList<Audio>();
+        while(rs.next()){
+        Audio audio=new Audio( rs.getInt("id"),rs.getString("url"),rs.getString("value"));
+        
         result.add(audio);}
         
         

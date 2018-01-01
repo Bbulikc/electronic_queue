@@ -5,7 +5,7 @@
  */
 package Control.tableModel;
 
-import Control.ClassTable.Check;
+import Control.DAO.Check;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 

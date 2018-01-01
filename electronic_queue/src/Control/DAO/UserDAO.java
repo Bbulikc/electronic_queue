@@ -5,8 +5,6 @@
  */
 package Control.DAO;
 
-import Control.ClassTable.AUDIO;
-import Control.ClassTable.User;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,9 +31,14 @@ public class UserDAO {
                        
     }
     
+    public void close() throws SQLException{
+     myConnect.close();
+     }
+     
+     
     public void Add(User newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("insert into User('login','password') values(?,?)");
+        pr=this.myConnect.prepareStatement("insert into User(login,password) values(?,?)");
         pr.setString(1, newObject.getLogin());
          pr.setString(2, newObject.getPassword());
          
@@ -55,18 +58,18 @@ public class UserDAO {
      
      public void delete(User newObject) throws SQLException{
         PreparedStatement pr=null;
-        pr=this.myConnect.prepareStatement("delete * from User where id=?");
+        pr=this.myConnect.prepareStatement("delete  from User where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
         pr.executeQuery();
     }
      
-      public AUDIO select(User newObject) throws SQLException{
+      public Audio select(User newObject) throws SQLException{
         PreparedStatement pr=null;
         pr=this.myConnect.prepareStatement("select * from User where id=?");
         pr.setString(1, Integer.toString(newObject.getId()));
         //pr.executeQuery();
-        ResultSet rs = pr.executeQuery();
-        AUDIO rezult=new AUDIO( rs.getInt("id"),rs.getString("login"),rs.getString("password"));
+        ResultSet rs = pr.executeQuery(); rs.next();
+        Audio rezult=new Audio( rs.getInt("id"),rs.getString("login"),rs.getString("password"));
         return rezult;
     }
     
@@ -77,9 +80,9 @@ public class UserDAO {
         //pr.executeQuery();
         ResultSet rs = pr.executeQuery();
         ArrayList<User> result=new ArrayList<User>();
-        while(rs.wasNull()){
+        while( rs.next()){
         User user=new User( rs.getInt("id"),rs.getString("login"),rs.getString("password"));
-        rs.next();
+      
         result.add(user);}
         
         
