@@ -30,7 +30,7 @@ static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment()
         //terminal.setUndecorated(true);
       //  terminal.c
      //  terminal.setVisible(true);
-       device.setFullScreenWindow(terminal);
+       //device.setFullScreenWindow(terminal);
        new Client();
       
    /*  try{

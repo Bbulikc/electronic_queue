@@ -135,9 +135,9 @@ public class Terminal extends javax.swing.JFrame {
          container.setLayout(null);
          
        // initComponents();
-      setUndecorated(true);
-      setExtendedState(JFrame.MAXIMIZED_BOTH);
-      setUndecorated(true);
+     // setUndecorated(true);
+      //setExtendedState(JFrame.MAXIMIZED_BOTH);
+    //  setUndecorated(true);
       
       //setVisible(true); 
        createButton();

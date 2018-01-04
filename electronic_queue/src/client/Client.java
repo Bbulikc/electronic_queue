@@ -8,60 +8,68 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import client.Const;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- * ���ᯥ稢��� ࠡ��� �ணࠬ�� � ०��� ������
- * 
- * @author ����
- */
+
 public class Client {
-	private BufferedReader in;
-	private PrintWriter out;
+	private ObjectInputStream in;
+	private ObjectOutputStream out;
 	private Socket socket;
 
-	/**
-	 * ����訢��� � ���짮��⥫� ��� � �࣠�����뢠�� ����� ᮮ�饭�ﬨ �
-	 * �ࢥ஬
-	 */
-	public Client() {
+	
+	public Client()throws Exception  {
 		Scanner scan = new Scanner(System.in);
-
-		System.out.println("������ IP ��� ������祭�� � �ࢥ��.");
-		System.out.println("��ଠ�: xxx.xxx.xxx.xxx");
-
-		String ip = scan.nextLine();
+                 Properties prop=new Properties();
+                 
+                prop.load(new FileInputStream("src/Control/DAO/info.properties"));
+                String ip=prop.getProperty("ipserver");
+                String port=prop.getProperty("port");
+		
+		
 
 		try {
-			// ������砥��� � �ࢥ�� � ����砥� ��⮪�(in � out) ��� ��।�� ᮮ�饭��
+			System.out.println("1");
 			socket = new Socket(ip, Const.Port);
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			out = new PrintWriter(socket.getOutputStream(), true);
+			//in = new ObjectInputStream(socket.getInputStream());
+                       // System.out.println("2");
+			out = new ObjectOutputStream(socket.getOutputStream());
+                        System.out.println("21");
+			
+			//out.println(scan.nextLine());
 
-			System.out.println("������ ᢮� ���:");
-			out.println(scan.nextLine());
-
-			// ����᪠�� �뢮� ��� �室��� ᮮ�饭�� � ���᮫�
+			
 			Resender resend = new Resender();
-			resend.start();
-
-			// ���� ���짮��⥫� �� ������ "exit" ��ࠢ�塞 �� �ࢥ� ���, ��
-			// ������� �� ���᮫�
+			//resend.start();
+System.out.println("3");
+			
 			String str = "";
+                        System.out.println("31");
 			while (!str.equals("exit")) {
+                            System.out.println("32");
 				str = scan.nextLine();
-				out.println(str);
+                                System.out.println("33");
+                                SocetData sd=new SocetData();
+                                System.out.println("4");
+                                sd.setValue(str);
+                                System.out.println("5");
+                                out.writeObject(sd);
+                                  System.out.println("6");
+				//out.println(sd);
 			}
 			resend.setStop();
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.print(e.getMessage());
 		} finally {
 			close();
 		}
 	}
 
-	/**
-	 * ����뢠�� �室��� � ��室��� ��⮪� � ᮪��
-	 */
+	
 	private void close() {
 		try {
 			in.close();
@@ -72,40 +80,37 @@ public class Client {
 		}
 	}
 
-	/**
-	 * ����� � �⤥�쭮� ��� ����뫠�� �� ᮮ�饭�� �� �ࢥ� � ���᮫�.
-	 * ����⠥� ���� �� �㤥� �맢�� ��⮤ setStop().
-	 * 
-	 * @author ����
-	 */
+	
+	
 	private class Resender extends Thread {
 
 		private boolean stoped;
 		
-		/**
-		 * �४�頥� ����뫪� ᮮ�饭��
-		 */
+		
 		public void setStop() {
 			stoped = true;
 		}
 
-		/**
-		 * ���뢠�� �� ᮮ�饭�� �� �ࢥ� � ���⠥� �� � ���᮫�.
-		 * ��⠭���������� �맮��� ��⮤� setStop()
-		 * 
-		 * @see java.lang.Thread#run()
-		 */
 		@Override
 		public void run() {
 			try {
 				while (!stoped) {
-					String str = in.readLine();
-					System.out.println(str);
+					//String str = in.readLine();
+                                        SocetData sd=new SocetData();
+                                        
+                                        sd=(SocetData)in.readObject();
+                                        //String str = in.readLine();
+					//System.out.println(str);
+                                        if(sd.getValue().indexOf("#number#")>-1){
+                                            System.out.println(sd.getValue());
+                                        setStop();}
 				}
 			} catch (IOException e) {
-				System.err.println("�訡�� �� ����祭�� ᮮ�饭��.");
+				System.err.println("Ошибка сети");
 				e.printStackTrace();
-			}
+			} catch (ClassNotFoundException ex) {
+                        Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 		}
 	}
 
