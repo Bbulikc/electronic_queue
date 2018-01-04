@@ -14,10 +14,9 @@ import electronic_queue.Ui.*;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import javax.swing.JButton;
-/**
- *
- * @author User
- */
+import client.Client;
+
+
 public class Electronic_queue {
 static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices()[0];
     /**
@@ -30,8 +29,9 @@ static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment()
        Terminal terminal=new Terminal();
         //terminal.setUndecorated(true);
       //  terminal.c
-       terminal.setVisible(true);
+     //  terminal.setVisible(true);
        device.setFullScreenWindow(terminal);
+       new Client();
       
    /*  try{
       /*    // System.out.println("Helloy World");

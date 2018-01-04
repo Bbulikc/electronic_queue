@@ -24,6 +24,7 @@ public class AudioDAO {
         Properties prop=new Properties();
         prop.load(new FileInputStream("src/Control/DAO/info.properties"));
         String user=prop.getProperty("user");
+        
         String password=prop.getProperty("password");
         String url=prop.getProperty("url");
         myConnect=DriverManager.getConnection(url,user, password);
