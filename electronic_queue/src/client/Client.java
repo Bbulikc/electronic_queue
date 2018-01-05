@@ -35,33 +35,41 @@ public class Client {
 		try {
 			System.out.println("1");
 			socket = new Socket(ip, Const.Port);
-			//in = new ObjectInputStream(socket.getInputStream());
-                       // System.out.println("2");
+			
+                       //  in = new ObjectInputStream(socket.getInputStream());
+                        System.out.println("2");
 			out = new ObjectOutputStream(socket.getOutputStream());
                         System.out.println("21");
 			
 			//out.println(scan.nextLine());
 
 			
-			Resender resend = new Resender();
-			//resend.start();
-System.out.println("3");
+			//Resender resend = new Resender();
 			
+                        System.out.println("3");
+                         SocetData sd=new SocetData();
+                          // sd.setValue("");
+                           //out.writeObject(sd);
+                            //in = new ObjectInputStream(socket.getInputStream());
+			// resend.start();
 			String str = "";
                         System.out.println("31");
-			while (!str.equals("exit")) {
+			//while (!str.equals("exit")) {
                             System.out.println("32");
 				str = scan.nextLine();
                                 System.out.println("33");
-                                SocetData sd=new SocetData();
-                                System.out.println("4");
-                                sd.setValue(str);
-                                System.out.println("5");
-                                out.writeObject(sd);
+                               
+                              
+                                 sd.setValue(str);
+                               out.writeObject(sd);
                                   System.out.println("6");
+                                 in = new ObjectInputStream(socket.getInputStream());
+                                 sd=(SocetData)in.readObject();
+                                         System.out.println(sd.getValue());
+                                         //close();
 				//out.println(sd);
-			}
-			resend.setStop();
+			//}
+			//resend.setStop();
 		} catch (Exception e) {
 			System.out.print(e.getMessage());
 		} finally {
@@ -94,11 +102,13 @@ System.out.println("3");
 		@Override
 		public void run() {
 			try {
+                           
 				while (!stoped) {
 					//String str = in.readLine();
                                         SocetData sd=new SocetData();
-                                        
+                                       
                                         sd=(SocetData)in.readObject();
+                                         System.out.println(sd.getValue());
                                         //String str = in.readLine();
 					//System.out.println(str);
                                         if(sd.getValue().indexOf("#number#")>-1){
