@@ -53,18 +53,19 @@ public class Client {
                            //out.writeObject(sd);
                             //in = new ObjectInputStream(socket.getInputStream());
 			// resend.start();
-			String str = "";
+			String str = "number";
                        
-				str = scan.nextLine();
+				//str = scan.nextLine();
                                
                                
                               
                                  sd.setValue(str);
                                out.writeObject(sd);
-                                  System.out.println("6");
+                                  
                                  in = new ObjectInputStream(socket.getInputStream());
                                  
                                  sd=(SocetData)in.readObject();
+                                 
                                  GetNumber.setDate(sd);//get number
                                         // System.out.println(sd.getValue());
                                          //close();
@@ -85,39 +86,19 @@ public class Client {
                 prop.load(new FileInputStream("src/Control/DAO/info.properties"));
                 String ip=prop.getProperty("ipserver");
                 String port=prop.getProperty("port");
-		
-		
-
-		
-			
+		System.out.println("kll"+ip);
+                
 			socket = new Socket(ip, Const.Port);
 			
                      
 			out = new ObjectOutputStream(socket.getOutputStream());
-                       
-			
-			//out.println(scan.nextLine());
-
-			
-			//Resender resend = new Resender();
-			
-                        
-                         SocetData sd=new SocetData();
-                          // sd.setValue("");
-                           //out.writeObject(sd);
-                            //in = new ObjectInputStream(socket.getInputStream());
-			// resend.start();
-			String str = "";
-                       
-				str = "test";
-                               
-                               
-                              
+                        SocetData sd=new SocetData();
+                        String str = "";
+                       	str = "test";      
                                  sd.setValue(str);
                                out.writeObject(sd);
-                                  System.out.println("6");
+                                  
                                  in = new ObjectInputStream(socket.getInputStream());
-                                 
                                  sd=(SocetData)in.readObject();
                                 //get number
                                         // System.out.println(sd.getValue());

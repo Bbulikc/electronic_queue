@@ -6,6 +6,7 @@
 package electronic_queue.Ui;
 
 import electronic_queue.Button;
+import electronic_queue.Layout;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -50,17 +51,15 @@ public class Terminal extends javax.swing.JFrame {
         int bheight=sr2height/2,bwidth=sr2width/2;
         
       
-    
+        Layout lay=new Layout(1,sr10procwidth,sr4procr2heigh,sr2width,sr2height,srheight,srwidth);
         
         ArrayList<JButton> jb=new ArrayList<JButton>();
-       // for(int i=0;i<9;i++){
-          /* JButton j= new JButton("knopka 1 ");
-       ActionListeners  a=new ActionListeners();
-           j.addActionListener(a);
-     j.setBounds(sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height-sr4procr2heigh);          
-     jb.add(j);*/
+       // jb=lay.getList();
+     /*
        Button j= new Button("knopka 1 ",sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height-sr4procr2heigh);
-     jb.add(j);
+        ActionListeners  a=new ActionListeners();
+       j.addActionListener(a);
+       jb.add(j);
      JButton j1= new JButton("knopka 2 ");
      j1.setBounds(sr10procwidth-(int)(sr10procwidth*0.5), srheight-j.getHeight()/2, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
       ActionExit  a1=new ActionExit();
@@ -92,36 +91,14 @@ public class Terminal extends javax.swing.JFrame {
      jb.add(j8);
       JButton j9= new JButton("knopka ");
      j9.setBounds(srwidth+5*sr10procwidth-(int)(sr10procwidth*0.5), srheight+ sr4procr2heigh*3, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
-     jb.add(j9);
-     
-        
-      //  p1.setLayout(new FlowLayout( ));
-     // p1.setLayout(new GridLayout());
-      /* JPanel p2=new JPanel();
-          p2.setLayout(new BorderLayout(25,25));
-         JPanel p3=new JPanel();
-          p3.setLayout(new BorderLayout(25,25));
-        BorderLayout b= new BorderLayout(25,25);
-        */
- /*                  
-        p1.add(jb.get(0));
-        p1.add(jb.get(1));
-        p1.add(jb.get(2));
-        
-     /*   for(int i=3;i<6;i++){
-         p2.add(jb.get(i), BorderLayout.CENTER);}
-        for(int i=6;i<9;i++){
-         p3.add(jb.get(i), BorderLayout.EAST);}
-        */
- 
+     jb.add(j9);*/
+     Layout.createLayout();
+     lay= Layout.listLayout.get(0);
+     System.out.print(lay.getListButton().size()+"gg");
   for(int i=0;i<9;i++){
-   container.add(jb.get(i));}
+   container.add(lay.getListButtonIndex(i));}
       
       
-       //container=p1;
-      //  container.add(p2);
-     //   container.add(p3);
-    
     }
     
     
@@ -132,15 +109,10 @@ public class Terminal extends javax.swing.JFrame {
          
         
           container=this.getContentPane();
-      //  container.setLayout(new FlowLayout());
+    
          container.setLayout(null);
          
-       // initComponents();
-     // setUndecorated(true);
-      //setExtendedState(JFrame.MAXIMIZED_BOTH);
-    //  setUndecorated(true);
-      
-      //setVisible(true); 
+     
        createButton();
        
     

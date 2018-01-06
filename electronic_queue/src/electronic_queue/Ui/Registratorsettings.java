@@ -470,9 +470,13 @@ public void SetActivePanel(int index){
             Logger.getLogger(Registratorsettings.class.getName()).log(Level.SEVERE, null, ex);
         }
                 String ip=jTextField5.getText();
+                
+                System.out.print("prop"+ip);
                         prop.setProperty("ipserver",ip);
+                        System.out.print(prop.getProperty("ipserver"));
                 String port=jTextField6.getText();
                         prop.getProperty("port",port);
+                        
        dispose();
 
     }//GEN-LAST:event_jButton8ActionPerformed

@@ -28,6 +28,6 @@ public class GetNumber {
     private static void printCheck(){
     String numberValue=date.getValue();
     //print chek
-    System.out.println(numberValue+" ...");
+    System.out.println(numberValue);
     }
 }

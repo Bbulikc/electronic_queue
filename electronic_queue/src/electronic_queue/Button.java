@@ -19,8 +19,7 @@ public class Button extends JButton{
     private String color;
     public Button(String text,int x,int y,int width, int height){
      super(text);
-       ActionListeners  a=new ActionListeners();
-           addActionListener(a);
+       
      setBounds(x, y, width,height);   
      
      }
