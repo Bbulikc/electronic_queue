@@ -15,7 +15,7 @@ public class Terminal1 extends JFrame{
     /**
      * Creates new form NewJPanel
      */
-    public Terminal1(String str) {
+    public Terminal1() {
      
     }
 

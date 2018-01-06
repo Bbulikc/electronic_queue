@@ -5,6 +5,14 @@
  */
 package electronic_queue.Ui;
 
+import electronic_queue.Start;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Eugene Maltsev
@@ -14,10 +22,19 @@ public class Registratorsettings extends javax.swing.JFrame {
     /**
      * Creates new form Registratorframe
      */
-    public Registratorsettings() {
+    private int  num=0;
+   
+public Registratorsettings() {
         initComponents();
+        jLabel11.setVisible(false);
+        
     }
-
+public void MessageConnectError(){
+    jLabel11.setVisible(true);
+}
+public void SetActivePanel(int index){
+     jTabbedPane1.setSelectedIndex(index);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +83,7 @@ public class Registratorsettings extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
 
@@ -371,27 +389,43 @@ public class Registratorsettings extends javax.swing.JFrame {
                 .addGap(0, 20, Short.MAX_VALUE))
         );
 
+        jLabel11.setText("Нет связи с сервером. Введите необходимые настроцки.");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(347, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(jLabel11)))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 392, Short.MAX_VALUE))
+                .addGap(94, 94, 94)
+                .addComponent(jLabel11)
+                .addGap(0, 248, Short.MAX_VALUE))
         );
+
+        jLabel11.getAccessibleContext().setAccessibleDescription("");
 
         jTabbedPane1.addTab("Связь", jPanel3);
 
         jButton7.setText("Выход");
 
         jButton8.setText("Сохранить");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -421,7 +455,27 @@ public class Registratorsettings extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+       Start.run();
+       Properties prop=new Properties();
+                 
+        try {
+            prop.load(new FileInputStream("src/Control/DAO/info.properties"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Registratorsettings.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Registratorsettings.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                String ip=jTextField5.getText();
+                        prop.setProperty("ipserver",ip);
+                String port=jTextField6.getText();
+                        prop.getProperty("port",port);
+       dispose();
+
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,6 +528,7 @@ public class Registratorsettings extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;

@@ -5,6 +5,7 @@
  */
 package electronic_queue.Ui;
 
+import electronic_queue.Button;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -53,44 +54,44 @@ public class Terminal extends javax.swing.JFrame {
         
         ArrayList<JButton> jb=new ArrayList<JButton>();
        // for(int i=0;i<9;i++){
-           JButton j= new JButton("knopka 1 ");
-          // Dimension d=new Dimension();
-          // //d.setSize(500, bwidth);
-       //    j.setMaximumSize(d);
-          // j.setSize(500, bwidth);
-       //    j.setBackground(Color.BLUE);
-         //  j.setPreferredSize(new Dimension( bwidth,bheight));
-     j.setBounds(sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height);          
+          /* JButton j= new JButton("knopka 1 ");
+       ActionListeners  a=new ActionListeners();
+           j.addActionListener(a);
+     j.setBounds(sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height-sr4procr2heigh);          
+     jb.add(j);*/
+       Button j= new Button("knopka 1 ",sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height-sr4procr2heigh);
      jb.add(j);
      JButton j1= new JButton("knopka 2 ");
-     j1.setBounds(sr10procwidth-(int)(sr10procwidth*0.5), srheight-j.getHeight()/2, sr2width+sr10procwidth,sr2height);  
+     j1.setBounds(sr10procwidth-(int)(sr10procwidth*0.5), srheight-j.getHeight()/2, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
+      ActionExit  a1=new ActionExit();
+          j1.addActionListener(a1);   
      jb.add(j1);
       JButton j3= new JButton("knopka 3");
-     j3.setBounds(sr10procwidth-(int)(sr10procwidth*0.5), srheight+ sr4procr2heigh*3, sr2width+sr10procwidth,sr2height);  
+     j3.setBounds(sr10procwidth-(int)(sr10procwidth*0.5), srheight+ sr4procr2heigh*3, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
      jb.add(j3);
      
      
      
      
       JButton j4= new JButton("knopka 4");
-     j4.setBounds(srwidth-3*sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height);  
+     j4.setBounds(srwidth-3*sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
      jb.add(j4);
       JButton j5= new JButton("knopka 5");
-     j5.setBounds(srwidth-3*sr10procwidth-(int)(sr10procwidth*0.5), srheight-j.getHeight()/2, sr2width+sr10procwidth,sr2height);  
+     j5.setBounds(srwidth-3*sr10procwidth-(int)(sr10procwidth*0.5), srheight-j.getHeight()/2, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
      jb.add(j5);
       JButton j6= new JButton("knopka 6");
-     j6.setBounds(srwidth-3*sr10procwidth-(int)(sr10procwidth*0.5), srheight+ sr4procr2heigh*3, sr2width+sr10procwidth,sr2height);  
+     j6.setBounds(srwidth-3*sr10procwidth-(int)(sr10procwidth*0.5), srheight+ sr4procr2heigh*3, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
      jb.add(j6);
      
      
       JButton j7= new JButton("knopka 8");
-     j7.setBounds(srwidth+5*sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height);  
+     j7.setBounds(srwidth+5*sr10procwidth-(int)(sr10procwidth*0.5), sr4procr2heigh, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
      jb.add(j7);
       JButton j8= new JButton("knopka 9");
-     j8.setBounds(srwidth+5*sr10procwidth-(int)(sr10procwidth*0.5), srheight-j.getHeight()/2, sr2width+sr10procwidth,sr2height);  
+     j8.setBounds(srwidth+5*sr10procwidth-(int)(sr10procwidth*0.5), srheight-j.getHeight()/2, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
      jb.add(j8);
       JButton j9= new JButton("knopka ");
-     j9.setBounds(srwidth+5*sr10procwidth-(int)(sr10procwidth*0.5), srheight+ sr4procr2heigh*3, sr2width+sr10procwidth,sr2height);  
+     j9.setBounds(srwidth+5*sr10procwidth-(int)(sr10procwidth*0.5), srheight+ sr4procr2heigh*3, sr2width+sr10procwidth,sr2height-sr4procr2heigh);  
      jb.add(j9);
      
         

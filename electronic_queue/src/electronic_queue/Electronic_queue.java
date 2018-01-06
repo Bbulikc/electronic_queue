@@ -22,16 +22,17 @@ static GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment()
     /**
      * @param args the command line arguments
      */
+
+        
+
     public static void main(String[] args) throws Exception {
         System.out.println("Helloy World");
-       // Operatorsettings os=new Operatorsettings();
-       // os.setVisible(true);
-       Terminal terminal=new Terminal();
-        //terminal.setUndecorated(true);
-      //  terminal.c
-     //  terminal.setVisible(true);
+       
+       Start.run();
+      //Terminal terminal=new Terminal();
+      //terminal.setVisible(true);
        //device.setFullScreenWindow(terminal);
-       new Client();
+       
       
    /*  try{
       /*    // System.out.println("Helloy World");
